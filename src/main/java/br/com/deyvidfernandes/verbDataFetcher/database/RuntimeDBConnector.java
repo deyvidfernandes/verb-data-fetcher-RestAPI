@@ -1,4 +1,4 @@
-package br.com.deyvidfernandes.verbDataRequisitor.database;
+package br.com.deyvidfernandes.verbDataFetcher.database;
 
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;

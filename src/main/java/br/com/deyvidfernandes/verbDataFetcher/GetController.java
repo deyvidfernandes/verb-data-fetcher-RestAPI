@@ -1,7 +1,6 @@
-package br.com.deyvidfernandes.verbDataRequisitor;
+package br.com.deyvidfernandes.verbDataFetcher;
 
-import br.com.deyvidfernandes.verbDataRequisitor.database.RuntimeDBConnector;
-import org.springframework.beans.factory.annotation.Autowired;
+import br.com.deyvidfernandes.verbDataFetcher.database.RuntimeDBConnector;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
