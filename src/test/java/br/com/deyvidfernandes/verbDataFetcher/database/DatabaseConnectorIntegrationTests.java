@@ -7,27 +7,30 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
  @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
- public class RuntimeDBConnectorIntegrationTest {
+ public class DatabaseConnectorIntegrationTest {
         @BeforeAll
     static void setUp() {
-        RuntimeDBConnector.setup(
-                "jdbc:mysql://localhost:3306/test",
+        DatabaseConnector.setup(
+                DatabaseType.MYSQL,
+                "test",
+                "localhost:3306/test",
                 "testUser",
                 "1234"
         );
         try {
-            RuntimeDBConnector.openConnection();
+            DatabaseConnector.openConnection();
         } catch (SQLException e) {
             fail(e.toString());
         }
     }
+
     @Test
     @Order(1)
     @DisplayName("Connect to database and execute a query")
     void query() {
         String result = "";
         try {
-            ResultSet rs = RuntimeDBConnector.query("select * from testTable");
+            ResultSet rs = DatabaseConnector.query("select * from testTable");
             rs.next();
             result += rs.getString(1);
             result += rs.getString(2);
@@ -39,17 +42,39 @@ import static org.junit.jupiter.api.Assertions.*;
             fail(e.toString());
         }
     }
+
     @Test
     @Order(2)
+    @DisplayName("Check if table do not exists")
+    void tableDoNotExists() {
+        try {
+            assertFalse(DatabaseConnector.tableExists("foobar"));
+        } catch (SQLException e) {
+            fail(e.toString());
+        }
+    }
+    @Test
+    @Order(3)
+    @DisplayName("Check if table exists")
+    void tableExists() {
+        try {
+            assertTrue(DatabaseConnector.tableExists("testTable"));
+        } catch (SQLException e) {
+            fail(e.toString());
+        }
+    }
+
+    @Test
+    @Order(4)
     @DisplayName("Cannot close already closed connection")
     void closeConnection() {
         try {
-            RuntimeDBConnector.closeConnection();
+            DatabaseConnector.closeConnection();
         } catch (SQLException e) {
             fail(e.toString());
         }
         assertThrows(UnsupportedOperationException.class, () -> {
-            RuntimeDBConnector.closeConnection();
+            DatabaseConnector.closeConnection();
         });
     }
 }

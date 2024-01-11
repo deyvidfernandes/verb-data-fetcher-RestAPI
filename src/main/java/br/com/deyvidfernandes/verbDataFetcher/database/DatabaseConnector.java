@@ -3,15 +3,14 @@ package br.com.deyvidfernandes.verbDataFetcher.database;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Map;
 
 public class RuntimeDBConnector {
     static private HikariDataSource dataSource;
     static private Connection currentConnection;
+
+    static public String tableName;
 
     static public void setup(String JdbcUrl, String username, String password, Map<String, Object> properties) {
 
@@ -35,7 +34,9 @@ public class RuntimeDBConnector {
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+
         dataSource = new HikariDataSource(config);
+
     }
 
     static public void openConnection() throws SQLException {
@@ -57,6 +58,15 @@ public class RuntimeDBConnector {
     static public int update(String sql) throws SQLException {
         PreparedStatement pst = currentConnection.prepareStatement(sql);
         return pst.executeUpdate();
+    }
+
+    static public boolean tableExists(String name) throws SQLException {
+        DatabaseMetaData dmd = currentConnection.getMetaData();
+        ResultSet table = dmd.getTables(null, null, name, null);
+        if (table.next()) {
+            return true;
+        }
+        return false;
     }
 
 }
