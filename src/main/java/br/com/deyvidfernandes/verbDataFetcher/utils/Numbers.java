@@ -1,5 +1,8 @@
 package br.com.deyvidfernandes.verbDataFetcher.utils;
 
-public class Strings {
-    static float formatNumber()
+public class Numbers {
+    static public String correctlyDisplayDouble(Double d) {
+        return d.toString().replace(",", ".");
+    }
+
 }

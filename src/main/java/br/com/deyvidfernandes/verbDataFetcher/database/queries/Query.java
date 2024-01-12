@@ -1,2 +1,5 @@
-package br.com.deyvidfernandes.verbDataFetcher.database.queries;public class Query {
+package br.com.deyvidfernandes.verbDataFetcher.database.queries;
+
+public record Query(String MYSQL, String POSTGRESQL, String MARIADB) {
+
 }

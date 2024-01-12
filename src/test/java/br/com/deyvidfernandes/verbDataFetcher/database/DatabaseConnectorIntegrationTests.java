@@ -7,19 +7,21 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
  @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
- public class DatabaseConnectorIntegrationTest {
+ public class DatabaseConnectorIntegrationTests {
         @BeforeAll
     static void setUp() {
-        DatabaseConnector.setup(
-                DatabaseType.MYSQL,
-                "test",
-                "localhost:3306/test",
-                "testUser",
-                "1234"
-        );
         try {
+            DatabaseConnector.setup(
+                    DatabaseType.MYSQL,
+                    "test",
+                    "localhost:3306/test",
+                    "testUser",
+                    "1234",
+                    null
+            );
+
             DatabaseConnector.openConnection();
-        } catch (SQLException e) {
+        } catch (Exception e) {
             fail(e.toString());
         }
     }

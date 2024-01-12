@@ -6,26 +6,21 @@ import com.zaxxer.hikari.HikariDataSource;
 import java.sql.*;
 import java.util.Map;
 
-public class RuntimeDBConnector {
+public class DatabaseConnector {
     static private HikariDataSource dataSource;
     static private Connection currentConnection;
+    static private String schema;
+    static private DatabaseType databaseType;
 
-    static public String tableName;
+    static public void setup(DatabaseType databaseType, String schema, String url, String username, String password, Map<String, Object> properties) {
 
-    static public void setup(String JdbcUrl, String username, String password, Map<String, Object> properties) {
+        String jdbcProtocol = switch (databaseType) {
+            case MYSQL -> "jdbc:mysql://";
+            case MARIADB -> "jdbc:mariadb://";
+            case POSTGRESQL -> "jdbc:postgresql://";
+        };
 
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl(JdbcUrl);
-        config.setUsername(username);
-        config.setPassword(password);
-        config.addDataSourceProperty("cachePrepStmts", "true");
-        config.addDataSourceProperty("prepStmtCacheSize", "250");
-        config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
-        properties.forEach(config::addDataSourceProperty);
-        dataSource = new HikariDataSource(config);
-    }
-
-    static public void setup(String JdbcUrl, String username, String password) {
+        var JdbcUrl = jdbcProtocol + url;
 
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(JdbcUrl);
@@ -34,9 +29,16 @@ public class RuntimeDBConnector {
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        if (properties != null) {
+            properties.forEach(config::addDataSourceProperty);
+        }
+
 
         dataSource = new HikariDataSource(config);
 
+
+        DatabaseConnector.schema = schema;
+        DatabaseConnector.databaseType = databaseType;
     }
 
     static public void openConnection() throws SQLException {
@@ -63,10 +65,14 @@ public class RuntimeDBConnector {
     static public boolean tableExists(String name) throws SQLException {
         DatabaseMetaData dmd = currentConnection.getMetaData();
         ResultSet table = dmd.getTables(null, null, name, null);
-        if (table.next()) {
-            return true;
-        }
-        return false;
+        return table.next();
+    }
+
+    public static String getSchema() {
+        return schema;
+    }
+    public static DatabaseType getDatabaseType() {
+        return databaseType;
     }
 
 }

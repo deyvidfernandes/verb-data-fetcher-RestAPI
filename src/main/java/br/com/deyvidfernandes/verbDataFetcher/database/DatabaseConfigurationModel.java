@@ -5,4 +5,5 @@ public class DatabaseConfigurationModel {
         public DatabaseType type;
         public String username;
         public String password;
+        public String table;
 }
