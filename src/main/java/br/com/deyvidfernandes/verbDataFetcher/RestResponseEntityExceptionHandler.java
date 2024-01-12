@@ -31,7 +31,7 @@ public class RestResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleFailPersistingVerbsException(FailPersistingVerbsException ex, ServletWebRequest request) {
         return responseBodyBuilder(
                 HttpStatus.INTERNAL_SERVER_ERROR,
-                "An fail occurred while persisting verb data",
+                "A fail occurred while persisting verb data",
                 request,
                 ex
         );
