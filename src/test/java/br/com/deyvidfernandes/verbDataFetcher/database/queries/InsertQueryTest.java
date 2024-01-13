@@ -1,8 +1,6 @@
 package br.com.deyvidfernandes.verbDataFetcher.database.queries;
 
-import ch.qos.logback.core.model.Model;
 import org.junit.jupiter.api.*;
-
 import static org.junit.jupiter.api.Assertions.assertAll;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -11,7 +9,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class InsertQueryTest {
-    private class TestModel {
+    private static class TestModel {
         public String fieldOne;
         public String fieldTwo;
         public double fieldThree;
@@ -32,7 +30,7 @@ public class InsertQueryTest {
         }
     }
 
-    InsertQuery insertQuery = new InsertQuery<TestModel>("(one, two, three, four)", "test", new TestModel());
+    InsertQuery<TestModel> insertQuery = new InsertQuery<>("(one, two, three, four)", "test", new TestModel());
 
     @Test
     @Order(1)
