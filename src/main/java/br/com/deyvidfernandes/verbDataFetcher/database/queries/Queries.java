@@ -6,7 +6,7 @@ public final class Queries {
 
     private Queries() {}
 
-    public static final Query CREATE_TABLE = new Query(
+    public static final IQuery CREATE_TABLE = new Query(
             """
                 CREATE TABLE {0} (
                 	infinitiveForm VARCHAR(20) NOT NULL,
@@ -44,7 +44,7 @@ public final class Queries {
             "MYSQL"
     );
 
-    public static final Query INSERT_VERB = new Query(
+    public static final IQuery INSERT_VERB = new Query(
             """
                 INSERT INTO {0}
                     (
@@ -100,11 +100,12 @@ public final class Queries {
             "MYSQL"
     );
 
-    static public String getQuery(DatabaseType databaseType, Query query) {
+    static public String getQuery(DatabaseType databaseType, IQuery query) {
         return switch (databaseType) {
             case MYSQL -> query.MYSQL();
             case MARIADB -> query.MARIADB().equals("MYSQL") ? query.MYSQL() : query.MARIADB();
             case POSTGRESQL -> query.POSTGRESQL();
         };
     }
+
 }
