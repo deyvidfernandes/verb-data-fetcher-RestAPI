@@ -2,7 +2,6 @@ package br.com.deyvidfernandes.verbDataFetcher.verb;
 
 import br.com.deyvidfernandes.verbDataFetcher.database.DatabaseConnector;
 import br.com.deyvidfernandes.verbDataFetcher.database.queries.InsertQuery;
-import br.com.deyvidfernandes.verbDataFetcher.database.queries.Queries;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.sql.SQLException;
+
+import static br.com.deyvidfernandes.verbDataFetcher.database.queries.Queries.getQueryDialect;
 
 
 @RestController
@@ -29,7 +30,7 @@ public class VerbDataController {
             );
             for (VerbModel verb : verbData) { insertVerbQuery.addValue(verb); }
             var dbType = DatabaseConnector.getDatabaseType();
-            String query = Queries.getQuery(dbType, insertVerbQuery);
+            String query = getQueryDialect(dbType, insertVerbQuery);
             System.out.println(query);
 
             DatabaseConnector.update(query);

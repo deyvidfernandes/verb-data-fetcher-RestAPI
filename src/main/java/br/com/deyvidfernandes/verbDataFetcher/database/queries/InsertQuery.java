@@ -8,10 +8,10 @@ import java.util.ArrayList;
 
 public class InsertQuery<Model> implements IQuery {
 
-    private String table;
-    private String columnList;
-    private Field[] modelFields;
-    private ArrayList<Model> valueList = new ArrayList<Model>();
+    private final String table;
+    private final String columnList;
+    private final Field[] modelFields;
+    private final ArrayList<Model> valueList = new ArrayList<>();
 
     public InsertQuery(String columnList, String table, Model smapleModel) {
         this.columnList = columnList;
