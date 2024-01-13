@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class InsertQueryTest {
+public class InsertQueryTests {
     private static class TestModel {
         public String fieldOne;
         public String fieldTwo;
@@ -46,7 +46,7 @@ public class InsertQueryTest {
         assertAll(() -> {
             assertThat(MySqlQuery, containsString("(\"a\", \"aa\", 0.122543, 2132),"));
             assertThat(MySqlQuery, containsString("(\"b\", \"bb\", 0.133543, 2232),"));
-            assertThat(MySqlQuery, containsString("(\"c\", \"cc\", 0.144543, 2332),"));
+            assertThat(MySqlQuery, containsString("(\"c\", \"cc\", 0.144543, 2332)"));
         });
     }
 }
