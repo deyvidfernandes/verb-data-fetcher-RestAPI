@@ -16,12 +16,14 @@ public class InsertQueryTest {
         public String fieldTwo;
         public double fieldThree;
         public int fieldFour;
+
         public TestModel(String fieldOne, String fieldTwo, double fieldThree, int fieldFour) {
             this.fieldOne = fieldOne;
             this.fieldTwo = fieldTwo;
             this.fieldThree = fieldThree;
             this.fieldFour = fieldFour;
         }
+
         public TestModel() {
             this.fieldOne = null;
             this.fieldTwo = null;
@@ -29,11 +31,14 @@ public class InsertQueryTest {
             this.fieldFour = 0;
         }
     }
+
     InsertQuery insertQuery = new InsertQuery<TestModel>("(one, two, three, four)", "test", new TestModel());
+
     @Test
     @Order(1)
     @DisplayName("Generate correct value lists")
-    void query() {
+    void generateValueLists() {
+
         insertQuery.addValue(new TestModel("a", "aa", 0.122543, 2132));
         insertQuery.addValue(new TestModel("b", "bb", 0.133543, 2232));
         insertQuery.addValue(new TestModel("c", "cc", 0.144543, 2332));
