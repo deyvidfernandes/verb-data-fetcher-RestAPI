@@ -50,7 +50,7 @@ public class InsertQuery<Model> implements IQuery {
         for (Model model : valueList) {
             query.append(generateValueRow(model, stringSymbol)).append(", \n");
         }
-        return query.substring(0, query.length() - 2);
+        return query.substring(0, query.length() - 3);
     }
 
     public String MYSQL() {

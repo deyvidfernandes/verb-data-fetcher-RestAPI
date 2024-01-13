@@ -9,7 +9,7 @@ import java.util.Map;
 public class DatabaseConnector {
     static private HikariDataSource dataSource;
     static private Connection currentConnection;
-    static private String schema;
+    static private String table;
     static private DatabaseType databaseType;
 
     static public void setup(DatabaseType databaseType, String schema, String url, String username, String password, Map<String, Object> properties) {
@@ -37,7 +37,7 @@ public class DatabaseConnector {
         dataSource = new HikariDataSource(config);
 
 
-        DatabaseConnector.schema = schema;
+        DatabaseConnector.table = schema;
         DatabaseConnector.databaseType = databaseType;
     }
 
@@ -68,8 +68,8 @@ public class DatabaseConnector {
         return table.next();
     }
 
-    public static String getSchema() {
-        return schema;
+    public static String getTable() {
+        return table;
     }
     public static DatabaseType getDatabaseType() {
         return databaseType;
