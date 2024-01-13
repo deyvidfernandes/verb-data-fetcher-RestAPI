@@ -40,16 +40,16 @@ Suppported database types:
 ```
 [
   {
-		"infinitiveForm": "run",
-		"simplePastForm": "ran",
-		"participleForm": "run",
-		"britishParticipleForm": "ran",
-		"britishSimplePastForm": "run",
-		"definition": "lorem ipsum dolor",
-		"usageIndex": 0.000001,
-		"audioUrl": "example-url.mp3",
-		"phonetic": "/rʌnz/"
-	}
+    "infinitiveForm": "run",
+    "simplePastForm": "ran",
+    "participleForm": "run",
+    "britishParticipleForm": "ran",
+    "britishSimplePastForm": "run",
+    "definition": "lorem ipsum dolor",
+    "usageIndex": 0.000001,
+    "audioUrl": "example-url.mp3",
+    "phonetic": "/rʌnz/"
+  }
 ]
 ```
 
