@@ -19,7 +19,7 @@ import static br.com.deyvidfernandes.verbDataFetcher.database.queries.Queries.ge
 @RequestMapping("/verb-data")
 public class VerbDataController {
 
-    @PostMapping("/")
+    @PostMapping("")
     public ResponseEntity<Object> persistVerb(@RequestBody VerbModel[] verbData) throws FailPersistingVerbsException {
         try {
             DatabaseConnector.openConnection();

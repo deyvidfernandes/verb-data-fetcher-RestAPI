@@ -3,13 +3,12 @@ package br.com.deyvidfernandes.verbDataFetcher.database;
 import br.com.deyvidfernandes.verbDataFetcher.database.queryTemplates.QueryTemplates;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.sql.SQLException;
 import java.text.MessageFormat;
+import java.util.Arrays;
+
 
 import static br.com.deyvidfernandes.verbDataFetcher.database.queryTemplates.QueryTemplates.getQueryDialectTemplate;
 
@@ -17,7 +16,7 @@ import static br.com.deyvidfernandes.verbDataFetcher.database.queryTemplates.Que
 @RequestMapping("/database")
 public class DatabaseConfigurationController {
 
-    @PostMapping("/")
+    @PostMapping("/setup")
     public ResponseEntity<Object> setup(@RequestBody DatabaseConfigurationModel conf) throws SQLException {
 
         DatabaseConnector.setup(conf.type, conf.table, conf.url, conf.username, conf.password, null);
@@ -31,5 +30,11 @@ public class DatabaseConfigurationController {
         DatabaseConnector.closeConnection();
 
         return  ResponseEntity.status(HttpStatus.CREATED).body(null);
+    }
+
+    @GetMapping("/available-types")
+    public ResponseEntity<Object> getAvailableTypes() {
+        var availableDBTypes = Arrays.stream(DatabaseType.values()).map(DatabaseType::getValue);
+        return  ResponseEntity.status(HttpStatus.OK).body(availableDBTypes);
     }
 }
