@@ -1,14 +1,18 @@
 package br.com.deyvidfernandes.verbDataFetcher.verb;
 
 public class VerbModel {
-    public String infinitiveForm;
-    public String simplePastForm;
-    public String participleForm;
-    public String britishParticipleForm;
-    public String britishSimplePastForm;
-    public String definition;
+    public String infinitive;
+    public String infinitiveAudio;
+    public String simplePast;
+    public String simplePastAudio;
+    public String simplePastUK;
+    public String simplePastUKAudio;
+    public String participle;
+    public String participleAudio;
+    public String participleUK;
+    public String participleUKAudio;
     public double usageIndex;
-    public String audioUrl;
-    public String phonetic;
+    public String phonetics;
+    public String definitions;
 }
 //

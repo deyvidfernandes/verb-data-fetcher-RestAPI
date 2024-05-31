@@ -8,39 +8,51 @@ public final class QueryTemplates {
 
     public static final IQueryTemplate CREATE_TABLE = new QueryTemplate(
             """
-                CREATE TABLE {0} (
-                	infinitiveForm VARCHAR(20) NOT NULL,
-                	simplePastForm VARCHAR(20) NOT NULL,
-                	participleForm VARCHAR(20) NOT NULL,
-                	britishParticipleForm VARCHAR(20) NOT NULL,
-                	britishSimplePastForm VARCHAR(20) NOT NULL,
-                	dictionaryDefinition VARCHAR(400) NOT NULL,
-                    usageIndex DECIMAL(6,6) NOT NULL,
-                    audioUrl VARCHAR(30) NOT NULL,
-                    phonetic VARCHAR(30) NOT NULL,
-                    ID int AUTO_INCREMENT,
-                    
-                    constraint verb_pk
-                		primary key (ID)
-                );
-            """,
+                        CREATE TABLE {0} (
+                            definitions TEXT,
+                            phonetics VARCHAR(100) NOT NULL,
+                            usageIndex DECIMAL(12,12) NOT NULL,
+                            infinitive VARCHAR(50) NOT NULL,
+                            infinitive_audio VARCHAR(100),
+                                                                  
+                            simple_past VARCHAR(50) NOT NULL,
+                            simple_past_audio VARCHAR(100),
+                            simple_past_uk VARCHAR(50),
+                            simple_past_uk_audio VARCHAR(100),
+                         
+                            participle VARCHAR(50) NOT NULL,
+                            participle_audio VARCHAR(100),
+                            participle_uk VARCHAR(50),
+                            participle_uk_audio VARCHAR(100),
+                            id int AUTO_INCREMENT,
+                            
+                            constraint verb_pk
+                        	    primary key (id)
+                        );
+                    """,
             """
-                CREATE TABLE {0} (
-                    infinitiveForm VARCHAR(20) NOT NULL,
-                    simplePastForm VARCHAR(20) NOT NULL,
-                    participleForm VARCHAR(20) NOT NULL,
-                    britishParticipleForm VARCHAR(20) NOT NULL,
-                    britishSimplePastForm VARCHAR(20) NOT NULL,
-                    dictionaryDefinition VARCHAR(400) NOT NULL,
-                    usageIndex DECIMAL(6,6) NOT NULL,
-                    audioUrl VARCHAR(30) NOT NULL,
-                    phonetic VARCHAR(30) NOT NULL,
-                    ID SERIAL,
-                
-                    constraint verb_pk
-                       primary key (ID)
-               );
-            """,
+                        CREATE TABLE {0} (
+                            definitions TEXT,
+                            phonetics VARCHAR(100) NOT NULL,
+                            usageIndex DECIMAL(12,12) NOT NULL,
+                            infinitive VARCHAR(50) NOT NULL,
+                            infinitive_audio VARCHAR(100),
+                                                                          
+                            simple_past VARCHAR(50) NOT NULL,
+                            simple_past_audio VARCHAR(100),
+                            simple_past_uk VARCHAR(50),
+                            simple_past_uk_audio VARCHAR(100),
+                                 
+                            participle VARCHAR(50) NOT NULL,
+                            participle_audio VARCHAR(100),
+                            participle_uk VARCHAR(50),
+                            participle_uk_audio VARCHAR(100),
+                            ID SERIAL,
+                        
+                            constraint verb_pk
+                               primary key (ID)
+                       );
+                    """,
             "MYSQL"
     );
 
