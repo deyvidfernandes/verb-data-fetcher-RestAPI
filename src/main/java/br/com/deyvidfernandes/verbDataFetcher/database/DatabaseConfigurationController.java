@@ -14,7 +14,7 @@ import java.util.Arrays;
 import static br.com.deyvidfernandes.verbDataFetcher.database.queryTemplates.QueryTemplates.getQueryDialectTemplate;
 
 @RestController
-@RequestMapping("/database")
+@RequestMapping("/api/database")
 public class DatabaseConfigurationController {
 
     @PostMapping("/setup")

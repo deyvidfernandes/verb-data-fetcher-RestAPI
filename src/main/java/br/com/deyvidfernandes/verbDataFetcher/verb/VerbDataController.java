@@ -16,7 +16,7 @@ import static br.com.deyvidfernandes.verbDataFetcher.database.queries.Queries.ge
 
 
 @RestController
-@RequestMapping("/verb-data")
+@RequestMapping("/api/verb-data")
 public class VerbDataController {
 
     @PostMapping("")
