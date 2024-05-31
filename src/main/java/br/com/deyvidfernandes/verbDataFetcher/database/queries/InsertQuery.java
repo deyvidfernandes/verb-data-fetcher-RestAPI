@@ -32,9 +32,14 @@ public class InsertQuery<Model> implements IQuery {
                     valueRow.append(Numbers.correctlyDisplayDouble(numberValue));
                     valueRow.append(", ");
                 } else {
-                    valueRow.append(stringSymbol);
-                    valueRow.append(value.toString());
-                    valueRow.append(stringSymbol).append(", ");
+                    if (value != null) {
+                        valueRow.append(stringSymbol);
+                        valueRow.append(value.toString());
+                        valueRow.append(stringSymbol).append(", ");
+
+                    } else {
+                        valueRow.append("NULL, ");
+                    }
                 }
             } catch (IllegalAccessException e) {
                 throw new RuntimeException(e);

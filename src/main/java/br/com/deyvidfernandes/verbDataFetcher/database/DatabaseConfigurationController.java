@@ -30,7 +30,7 @@ public class DatabaseConfigurationController {
         }
         DatabaseConnector.closeConnection();
 
-        return  ResponseEntity.status(HttpStatus.CREATED).body(null);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/available-types")

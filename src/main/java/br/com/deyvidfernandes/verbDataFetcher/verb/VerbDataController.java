@@ -24,7 +24,7 @@ public class VerbDataController {
         try {
             DatabaseConnector.openConnection();
             InsertQuery<VerbModel> insertVerbQuery = new InsertQuery<>(
-                    "(infinitiveForm, simplePastForm, participleForm, britishParticipleForm, britishSimplePastForm, dictionaryDefinition, usageIndex, audioUrl, phonetic)",
+                    "(infinitive, infinitive_audio, simple_past, simple_past_audio, simple_past_uk, simple_past_uk_audio, participle, participle_audio, participle_uk, participle_uk_audio, usageIndex, phonetics, definitions)",
                     DatabaseConnector.getTable(),
                     new VerbModel()
             );
